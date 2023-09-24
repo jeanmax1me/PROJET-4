@@ -28,17 +28,13 @@ function launchM() {
   testcontent.classList.remove("hide-modal");
 }
 
-// close modal form
+// Close modal form
 function handleM() {
   testcontent.classList.add("hide-modal"); // Add the hide-modal class for closing animation
-
-  // Listen for the animation end event to actually hide the modal after the animation completes
-  testcontent.addEventListener("animationend", function (event) {
-    if (event.animationName === "modalclose") {
-      testmodal.style.display = "none";
-      testcontent.classList.remove("hide-modal"); // Remove the hide-modal class
-    }
-  });
+  // Use setTimeout to smoothly hide the modal after the animation completes
+  setTimeout(function () {
+    testmodal.style.display = "none";
+  }, 222); // Adjust the timeout duration as needed
 }
 
 
@@ -95,13 +91,13 @@ function validate() {
   let isLocationSelected = false;
   let isValid = true; // Initialize a flag as true
 
-    // Check if at least one location option is selected
-    locationInputs.forEach((input) => {
-      if (input.checked) {
-        isLocationSelected = true;
-      }
-    });
-  
+  // Check if at least one location option is selected
+  locationInputs.forEach((input) => {
+    if (input.checked) {
+      isLocationSelected = true;
+    }
+  });
+
   // Validate the first name
   if (!regex.test(firstNameInput.value)) {
     firstNameError.style.display = "block"; // Show the error message
@@ -157,7 +153,7 @@ function validate() {
     locationError.style.display = "none"; // Hide the error message
     locationError.classList.remove("field-error"); // Remove the field-error class from the error message
   }
-  console.log("Before quantity validation"); 
+  console.log("Before quantity validation");
   if (quantityInput.value === "" || isNaN(quantityInput.value)) {
     quantityError.style.display = "block"; // Show the error message
     quantityInput.classList.add("field-error"); // Add the field-error class to the input

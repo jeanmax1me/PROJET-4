@@ -526,19 +526,19 @@ footer {
 }
 
 @keyframes modalclose {
-  from {
+  0% {
     opacity: 1;
     transform: translateY(0);
   }
-  to {
+  100% {
     transform: translateY(-150px);
     opacity: 0;
-}
+  }
 }
 
 .hide-modal {
   animation-name: modalclose;
-  animation-duration: 0.6s;
+  animation-duration: 0.4s;
   animation-fill-mode: forwards;
 }
 
