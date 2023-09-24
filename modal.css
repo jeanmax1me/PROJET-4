@@ -8,7 +8,6 @@
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
 
 body {
   margin: 0;
@@ -405,7 +404,6 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -541,27 +539,37 @@ footer {
 .hide-modal {
   animation-name: modalclose;
   animation-duration: 0.6s;
-  animation-fill-mode: forwards; /* Keeps the last keyframe state */
+  animation-fill-mode: forwards;
 }
 
-#firstNameError, #lastNameError {
+#firstNameError, #lastNameError, #emailError, #birthdateError, #checkboxError, #locationError, #quantityError  {
   display: none;
 }
 
-
-/* Style for error messages */
-/* Style for error messages */
 .error-message {
-  color: #d9534f; /* Red text color */
-  margin-top: 3px; /* Spacing above the message */
-  border-radius: 3px; /* Rounded corners */
-  font-size: 12px; /* Smaller font size */
-  font-weight: normal; /* Normal text weight */
-  text-align: left; /* Left-align text */
-  display: none; /* Initially hidden */
+  color: #d9534f; 
+  margin-top: 3px; 
+  border-radius: 3px; 
+  font-size: 12px;
+  font-weight: normal; 
+  text-align: left; 
 }
 
-/* Style for fields with validation errors */
 .field-error {
-  border: 2px solid #d9534f; /* Red border for invalid fields */
+  border: 2px solid #d9534f; 
+}
+
+.postRegisterContent {
+  max-width: 536px;
+  max-height: 850px;
+  height: 83.1%;
+}
+@media screen and (max-width: 536px) {
+  .postRegisterContent {
+    min-width: 100%;
+    max-height: 657px;
+    height: 89.3%;
+    position: relative;
+    top: 79px;
+  }
 }
