@@ -169,9 +169,11 @@ function validate() {
   if (!isValid) {
     return false;
   }
-
-  // If all validations pass, you can continue with form submission
-  // Example: form.submit();
-
-  return true; // Return true to indicate validation success
-}
+  if (isValid) {
+    launchM();
+    event.preventDefault();
+    handleCloseModal();
+    return true; // Return true to indicate validation success and allow form submission
+  } else {
+    return false; // Return false to prevent form submission if there are validation errors
+  }}
