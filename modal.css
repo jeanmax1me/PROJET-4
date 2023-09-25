@@ -69,6 +69,7 @@ img {
 
 .topnav .icon {
   display: none;
+  color: #FF001B;
 }
 
 @media screen and (max-width: 768px) {
@@ -124,8 +125,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -712,26 +711,73 @@ a:hover::before {
 }
 
 a.icon::before {
-visibility: hidden;
+  visibility: hidden;
 }
 
 @media (max-width: 768px) {
   #nav-home::before {
     width: 32%;
   }
+
   #nav-details::before {
     width: 92%;
   }
+
   #nav-about::before {
     width: 39%;
   }
-  
+
   #nav-contact::before {
     width: 34%;
   }
-  
+
   #nav-pastevents::before {
     width: 84%;
   }
+
+  .hero-headline {
+    font-family: DM Sans;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 52px;
+    letter-spacing: 0px;
+    text-align: left;
+    white-space: wrap;
+  }
+
+  .hero-text {
+    font-family: DM Sans;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .hero-content {
+    padding: 0;
+    min-width: unset;
+  }
+
+  .hero-text {
+    margin-top: 17px;
+  }
+
+  .header-logo {
+    width: 103px;
+    height: 19px;
+    top: 33px;
+    left: 30px;
+  }
+
+  .header-logo img {
+    width: 103px;
+    height: 19px;
+    top: 33px;
+    left: 30px;
+  }
+
+  .topnav {
+    margin-top: 33px;
+  }
 }
-  
