@@ -669,6 +669,69 @@ footer {
 }
 
 .postRegisterContent {
-  border: 2px solid red;
   padding: 0;
 }
+
+a {
+  position: relative;
+  text-decoration: none;
+}
+
+a::before {
+  content: '';
+  position: absolute;
+  width: 92%;
+  height: 1px;
+  background-color: white;
+  bottom: 6px;
+  left: 10px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+#nav-home::before {
+  width: 76%;
+}
+
+#nav-about::before {
+  width: 80%;
+}
+
+#nav-contact::before {
+  width: 80%;
+}
+
+#nav-pastevents::before {
+  width: 89%;
+}
+
+a.icon::before {
+visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  #nav-home::before {
+    width: 32%;
+  }
+  #nav-details::before {
+    width: 92%;
+  }
+  #nav-about::before {
+    width: 39%;
+  }
+  
+  #nav-contact::before {
+    width: 34%;
+  }
+  
+  #nav-pastevents::before {
+    width: 84%;
+  }
+}
+  
