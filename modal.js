@@ -17,10 +17,13 @@ const testmodal = document.querySelector(".postRegisterModal");
 const testm = document.querySelectorAll(".testm");
 const testcontent = document.querySelector(".postRegisterContent");
 const testclose = document.querySelector(".postRegisterClose");
+const btnfermer = document.querySelector(".btn-fermer");
 
 // launch modal event
 testm.forEach((btn) => btn.addEventListener("click", launchM));
 testclose.addEventListener("click", handleM); // Use addEventListener directly
+
+btnfermer.addEventListener("click", handleM);
 
 // launch modal form
 function launchM() {
@@ -161,7 +164,6 @@ function validate() {
   } else {
     quantityError.style.display = "none"; // Hide the error message
     quantityInput.classList.remove("field-error"); // Remove the field-error class from the input
-    console.log(quantityInput.value);
   }
   // If isValid is false, prevent form submission
   if (!isValid) {
