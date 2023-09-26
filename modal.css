@@ -747,10 +747,12 @@ a.icon::before {
   }
 
   .topnav a.icon {
-    float: right;
-    display: block;
+      float: right;
+      display: block;
+      margin-top: -15px;
+    }
   }
-}
+
 
 
 @media screen and (max-width: 536px) {
@@ -768,11 +770,5 @@ a.icon::before {
 
   .topnav a {
     display: none;
-  }
-
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
   }
 }
