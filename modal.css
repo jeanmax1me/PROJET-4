@@ -40,6 +40,7 @@ img {
 }
 
 .main-navbar {
+
   float: right;
 }
 
@@ -503,6 +504,7 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
 }
 
 .copyrights {
@@ -523,52 +525,7 @@ footer {
   margin: 0 20px;
 }
 
-@media screen and (max-width: 800px) {
-  .hero-section {
-    display: block;
-    box-shadow: unset;
-  }
 
-  .hero-content {
-    background: #fff;
-    color: #000;
-    padding: 20px;
-  }
-
-  .hero-content::after {
-    content: unset;
-  }
-
-  .hero-content .btn-signup {
-    display: none;
-  }
-
-  .hero-headline {
-    font-size: 4.5rem;
-    white-space: normal;
-  }
-
-  .hero-text {
-    width: unset;
-    font-size: 1.5rem;
-  }
-
-  .hero-img img {
-    border-radius: 10px;
-    margin-top: 40px;
-  }
-
-  .hero-section>.btn-signup {
-    display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
-  }
-
-  .copyrights {
-    margin-top: 50px;
-    text-align: center;
-  }
-}
 
 @keyframes modalopen {
   from {
@@ -626,16 +583,6 @@ footer {
   max-width: 536px;
   max-height: 850px;
   height: 83.1%;
-}
-
-@media screen and (max-width: 536px) {
-  .postRegisterContent {
-    min-width: 100%;
-    max-height: 657px;
-    height: 89.3%;
-    position: relative;
-    top: 79px;
-  }
 }
 
 .postRegisterContent-text {
@@ -714,6 +661,70 @@ a.icon::before {
   visibility: hidden;
 }
 
+
+@media (max-width: 1100px) {
+  .hero-content {
+    min-width: unset;
+  }
+.hero-headline {
+  font-size: 4.5rem;
+}
+.hero-text {
+  width: 250%;
+}
+}
+
+@media screen and (max-width: 800px) {
+  .content {
+    margin-top: 80px;
+  }
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
+
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 20px;
+  }
+
+  .hero-content::after {
+    content: unset;
+  }
+
+  .hero-content .btn-signup {
+    display: none;
+  }
+
+  .hero-headline {
+    font-size: 4.5rem;
+    white-space: normal;
+  }
+
+  .hero-text {
+    width: unset;
+    font-size: 1.5rem;
+  }
+
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+
+  .hero-section>.btn-signup {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+  }
+
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+
 @media (max-width: 768px) {
   #nav-home::before {
     width: 32%;
@@ -779,5 +790,23 @@ a.icon::before {
 
   .topnav {
     margin-top: 33px;
+    overflow: unset;
   }
+  #nav-home {
+    margin-top: 54px;
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .postRegisterContent {
+    min-width: 100%;
+    max-height: 657px;
+    height: 89.3%;
+    position: relative;
+    top: 79px;
+  }
+  .content {
+    margin: 80px 0 0 0;
+    border: 2px solid magenta;
+   }
 }

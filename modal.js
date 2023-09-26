@@ -1,3 +1,4 @@
+// NAVBAR TOGGLE
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -7,7 +8,7 @@ function editNav() {
   }
 }
 
-// DOM Elements
+// MODALS DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -19,29 +20,30 @@ const testcontent = document.querySelector(".postRegisterContent");
 const testclose = document.querySelector(".postRegisterClose");
 const btnfermer = document.querySelector(".btn-fermer");
 
-// launch modal event
+//  -------------- POST REGISTRATION MODAL --------------
+
+// event listeners post registration modal
 testm.forEach((btn) => btn.addEventListener("click", launchM));
 testclose.addEventListener("click", handleM); // Use addEventListener directly
-
 btnfermer.addEventListener("click", handleM);
 
-// launch modal form
+// launch post registration modal
 function launchM() {
   testmodal.style.display = "block";
   testcontent.classList.remove("hide-modal");
 }
 
-// Close modal form
+// close  post registration modal
 function handleM() {
-  testcontent.classList.add("hide-modal"); // Add the hide-modal class for closing animation
-  // Use setTimeout to smoothly hide the modal after the animation completes
+  testcontent.classList.add("hide-modal"); 
   setTimeout(function () {
     testmodal.style.display = "none";
-  }, 222); // Adjust the timeout duration as needed
+  }, 222); // timeout for a smoother effect
 }
 
+//  -------------- REGISTRATION MODAL --------------
 
-// launch modal event
+// event listeners
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeModal.forEach(function (element) {
   element.addEventListener("click", handleCloseModal);
@@ -55,15 +57,103 @@ function launchModal() {
 
 // close modal form
 function handleCloseModal() {
-  content.classList.add("hide-modal"); // Add the hide-modal class for closing animation
-
-  // Listen for the animation end event to actually hide the modal after the animation completes
+  content.classList.add("hide-modal"); 
+// Listen for the animation end event to actually hide the modal after the animation completes
   content.addEventListener("animationend", function (event) {
     if (event.animationName === "modalclose") {
       modalbg.style.display = "none";
-      content.classList.remove("hide-modal"); // Remove the hide-modal class
+      content.classList.remove("hide-modal"); 
     }
   });
+}
+
+// FORM VALIDATION 
+
+function validateName(input, errorElement) {
+  const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ]{2,}$/;
+  if (!regex.test(input.value)) {
+    errorElement.style.display = "block";
+    input.classList.add("field-error");
+    return false;
+  } else {
+    errorElement.style.display = "none";
+    input.classList.remove("field-error");
+    return true;
+  }
+}
+
+function validateEmail(input, errorElement) {
+  const emailRegex = /^[A-Za-z]{1,}[A-Za-z0-9._%+-]+@[A-Za-z.-]+\.[A-Za-z]{2,}$/;
+  if (!emailRegex.test(input.value)) {
+    errorElement.style.display = "block";
+    input.classList.add("field-error");
+    return false;
+  } else {
+    errorElement.style.display = "none";
+    input.classList.remove("field-error");
+    return true;
+  }
+}
+
+function validateBirthdate(input, errorElement) {
+  if (input.value === "") {
+    errorElement.style.display = "block";
+    input.classList.add("field-error");
+    return false;
+  } else {
+    const birthdate = new Date(input.value);
+    const currentDate = new Date();
+    const age = currentDate.getFullYear() - birthdate.getFullYear();
+    if (age > 100 || age < 12) {
+      errorElement.style.display = "block";
+      input.classList.add("field-error");
+      return false;
+    } else {
+      errorElement.style.display = "none";
+      input.classList.remove("field-error");
+      return true;
+    }
+  }
+}
+
+function validateCheckbox(input, errorElement) {
+  if (!input.checked) {
+    errorElement.style.display = "block";
+    return false;
+  } else {
+    errorElement.style.display = "none";
+    return true;
+  }
+}
+
+function validateQuantity(input, errorElement) {
+  if (input.value === "" || isNaN(input.value)) {
+    errorElement.style.display = "block";
+    input.classList.add("field-error");
+    return false;
+  } else {
+    errorElement.style.display = "none";
+    input.classList.remove("field-error");
+    return true;
+  }
+}
+
+function validateLocation(locationInputs, errorElement) {
+  let isLocationSelected = false;
+  locationInputs.forEach((input) => {
+    if (input.checked) {
+      isLocationSelected = true;
+    }
+  });
+  if (!isLocationSelected) {
+    errorElement.style.display = "block";
+    errorElement.classList.add("field-error");
+    return false;
+  } else {
+    errorElement.style.display = "none";
+    errorElement.classList.remove("field-error");
+    return true;
+  }
 }
 
 function validate() {
@@ -82,98 +172,21 @@ function validate() {
   const locationInputs = document.querySelectorAll('input[name="location"]');
   const locationError = document.getElementById("locationError");
 
+  const isValid =
+    validateName(firstNameInput, firstNameError) &
+    validateName(lastNameInput, lastNameError) &
+    validateEmail(emailInput, emailError) &
+    validateBirthdate(birthdateInput, birthdateError) &
+    validateCheckbox(checkbox, checkboxError) &
+    validateQuantity(quantityInput, quantityError) &
+    validateLocation(locationInputs, locationError);
 
-
-  const birthdateValue = birthdateInput.value;
-  const [yearStr] = birthdateValue.split("-");
-  const year = parseInt(yearStr, 10);
-
-  const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]{2,}$/;
-  const emailRegex = /^[A-Za-z]{1,}[A-Za-z0-9._%+-]+@[A-Za-z.-]+\.[A-Za-z]{2,}$/;
-
-  let isLocationSelected = false;
-  let isValid = true; // Initialize a flag as true
-
-  // Check if at least one location option is selected
-  locationInputs.forEach((input) => {
-    if (input.checked) {
-      isLocationSelected = true;
-    }
-  });
-
-  // Validate the first name
-  if (!regex.test(firstNameInput.value)) {
-    firstNameError.style.display = "block"; // Show the error message
-    firstNameInput.classList.add("field-error"); // Add the field-error class to the input
-    isValid = false; // Set the flag to false
-  } else {
-    firstNameError.style.display = "none"; // Hide the error message
-    firstNameInput.classList.remove("field-error"); // Remove the field-error class from the input
-  }
-
-  // Validate the last name
-  if (!regex.test(lastNameInput.value)) {
-    lastNameError.style.display = "block"; // Show the error message
-    lastNameInput.classList.add("field-error"); // Add the field-error class to the input
-    isValid = false; // Set the flag to false
-  } else {
-    lastNameError.style.display = "none"; // Hide the error message
-    lastNameInput.classList.remove("field-error"); // Remove the field-error class from the input
-  }
-
-  // Validate the email
-  if (!emailRegex.test(emailInput.value)) {
-    emailError.style.display = "block"; // Show the error message
-    emailInput.classList.add("field-error"); // Add the field-error class to the input
-    isValid = false; // Set the flag to false
-  } else {
-    emailError.style.display = "none"; // Hide the error message
-    emailInput.classList.remove("field-error"); // Remove the field-error class from the input
-  }
-
-  // Validate the birth year
-  if (year < 1900 || year > 2011) {
-    birthdateError.style.display = "block"; // Show the year error message
-    birthdateInput.classList.add("field-error"); // Add the field-error class to the input
-    isValid = false; // Set the flag to false
-  } else {
-    birthdateError.style.display = "none"; // Hide the year error message
-    birthdateInput.classList.remove("field-error"); // Remove the field-error class from the input
-  }
-
-  // Validate the checkbox
-  if (!checkbox.checked) {
-    checkboxError.style.display = "block"; // Show the error message
-    isValid = false; // Set the flag to false
-  } else {
-    checkboxError.style.display = "none"; // Hide the error message
-  }
-  if (!isLocationSelected) {
-    locationError.style.display = "block"; // Show the error message
-    locationError.classList.add("field-error"); // Add the field-error class to the error message
-    isValid = false; // Set the flag to false
-  } else {
-    locationError.style.display = "none"; // Hide the error message
-    locationError.classList.remove("field-error"); // Remove the field-error class from the error message
-  }
-  console.log("Before quantity validation");
-  if (quantityInput.value === "" || isNaN(quantityInput.value)) {
-    quantityError.style.display = "block"; // Show the error message
-    quantityInput.classList.add("field-error"); // Add the field-error class to the input
-    isValid = false; // Set the flag to false
-  } else {
-    quantityError.style.display = "none"; // Hide the error message
-    quantityInput.classList.remove("field-error"); // Remove the field-error class from the input
-  }
-  // If isValid is false, prevent form submission
-  if (!isValid) {
-    return false;
-  }
   if (isValid) {
     launchM();
     event.preventDefault();
     handleCloseModal();
-    return true; // Return true to indicate validation success and allow form submission
+    return true;
   } else {
-    return false; // Return false to prevent form submission if there are validation errors
-  }}
+    return false;
+  }
+}
