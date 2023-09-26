@@ -547,13 +547,13 @@ footer {
   margin: 0 auto;
   background: #fe142f;
   border-radius: 7px;
-  font-size: 1rem;
   color: #fff;
   cursor: pointer;
   border: 0;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0px;
+  padding: 0;
 }
 
 .postRegisterContent {
@@ -742,11 +742,11 @@ a.icon::before {
   }
 
   .topnav a.icon {
-      float: right;
-      display: block;
-      margin-top: -15px;
-    }
+    float: right;
+    display: block;
+    margin-top: -15px;
   }
+}
 
 
 
@@ -767,3 +767,8 @@ a.icon::before {
     display: none;
   }
 }
+
+@media screen and (max-width: 328px) {
+  .postRegisterContent-text {
+    padding-bottom: 214px;
+  }}
