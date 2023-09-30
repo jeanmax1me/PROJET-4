@@ -156,37 +156,68 @@ function validateLocation(locationInputs, errorElement) {
   }
 }
 
-function validate() {
-  const firstNameInput = document.getElementById("first");
-  const firstNameError = document.getElementById("firstNameError");
-  const lastNameInput = document.getElementById("last");
-  const lastNameError = document.getElementById("lastNameError");
-  const emailInput = document.getElementById("email");
-  const emailError = document.getElementById("emailError");
-  const birthdateInput = document.getElementById("birthdate");
-  const birthdateError = document.getElementById("birthdateError");
-  const checkbox = document.getElementById("checkbox1");
-  const checkboxError = document.getElementById("checkboxError");
-  const quantityInput = document.getElementById("quantity");
-  const quantityError = document.getElementById("quantityError");
-  const locationInputs = document.querySelectorAll('input[name="location"]');
-  const locationError = document.getElementById("locationError");
 
-  const isValid =
-    validateName(firstNameInput, firstNameError) &
-    validateName(lastNameInput, lastNameError) &
-    validateEmail(emailInput, emailError) &
-    validateBirthdate(birthdateInput, birthdateError) &
-    validateCheckbox(checkbox, checkboxError) &
-    validateQuantity(quantityInput, quantityError) &
+// FORM VALIDATION PROCESS
+
+const firstNameInput = document.getElementById("first");
+const firstNameError = document.getElementById("firstNameError");
+const lastNameInput = document.getElementById("last");
+const lastNameError = document.getElementById("lastNameError");
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("emailError");
+const birthdateInput = document.getElementById("birthdate");
+const birthdateError = document.getElementById("birthdateError");
+const checkbox = document.getElementById("checkbox1");
+const checkboxError = document.getElementById("checkboxError");
+const quantityInput = document.getElementById("quantity");
+const quantityError = document.getElementById("quantityError");
+const locationInputs = document.querySelectorAll('input[name="location"]');
+const locationError = document.getElementById("locationError");
+
+//EVENTS LISTENERS ON CHANGE
+firstNameInput.addEventListener("input", function() {
+  validateName(firstNameInput, firstNameError);
+});
+lastNameInput.addEventListener("input", function() {
+  validateName(lastNameInput, lastNameError);
+});
+emailInput.addEventListener("input", function() {
+  validateEmail(emailInput, emailError);
+});
+birthdateInput.addEventListener("input", function() {
+  validateBirthdate(birthdateInput, birthdateError);
+});
+quantityInput.addEventListener("input", function() {
+  validateQuantity(quantityInput, quantityError);
+});
+locationInputs.forEach((input) => {
+  input.addEventListener("input", function() {
     validateLocation(locationInputs, locationError);
+  });
+});
 
-  if (isValid) {
-    launchM();
-    event.preventDefault();
-    handleCloseModal();
-    return true;
-  } else {
-    return false;
+  function validate() {
+    const firstNameValid = validateName(firstNameInput, firstNameError);
+    const lastNameValid = validateName(lastNameInput, lastNameError);
+    const emailValid = validateEmail(emailInput, emailError);
+    const birthdateValid = validateBirthdate(birthdateInput, birthdateError);
+    const quantityValid = validateQuantity(quantityInput, quantityError);
+    const locationValid = validateLocation(locationInputs, locationError);
+  
+    const isValid =
+      firstNameValid &&
+      lastNameValid &&
+      emailValid &&
+      birthdateValid &&
+      quantityValid &&
+      locationValid;
+  
+    if (isValid) {
+      launchM();
+      event.preventDefault();
+      handleCloseModal();
+      return true;
+    } else {
+      return false;
+    }
   }
-}
